@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.yah-advies.nl/sitemap.xml
