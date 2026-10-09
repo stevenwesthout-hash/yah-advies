@@ -43,7 +43,7 @@ document.querySelectorAll('form[data-send]').forEach(form=>{
       if(!r.ok||String(j.success)==='false')throw new Error(j.message||r.status);
       form.reset();
       status.className='form-status is-ok';
-      status.textContent='Dank u. Uw bericht is verstuurd naar YAH-Advies. Steven Westhout neemt contact met u op.';
+      status.textContent='Dank u. Uw bericht is verstuurd. YAH-Advies neemt zo snel mogelijk contact met u op.';
     }catch(err){
       status.className='form-status is-err';
       status.innerHTML='Verzenden lukte niet. <a href="#">Mail uw bericht dan via uw eigen e-mailprogramma</a> of bel 06 20 69 53 44.';
