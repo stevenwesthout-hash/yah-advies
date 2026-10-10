@@ -47,6 +47,11 @@ header nav>a[aria-current="page"]{font-weight:600}
 .nav-cta,.nav-foot{display:none!important}
 .header-actions{display:flex;align-items:center;gap:18px;position:relative;z-index:3}
 .header-cta{border-radius:2px}
+/* Taalknop NL | EN (10 okt 2026) */
+.lang-switch{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:34px;padding:0 10px;border:1px solid var(--line-strong);border-radius:2px;color:var(--ink);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-decoration:none;transition:border-color .2s,background .2s}
+.lang-switch:hover{border-color:var(--ink);background:var(--card)}
+.lang-switch:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:430px){.header-actions{gap:10px}.lang-switch{min-width:34px;height:30px;padding:0 7px}}
 header .menu-toggle{display:none;align-items:center;gap:12px;background:none;border:0;color:var(--ink);font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:8px 0}
 .menu-bars{display:grid;gap:6px;width:24px}
 .menu-bars i{display:block;height:1.5px;background:currentColor;transition:transform .25s ease}

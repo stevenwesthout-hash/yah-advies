@@ -2,6 +2,7 @@
 // Vaardigheden als mindmap: middelpunt, zes takken in een cirkel, onderdelen klappen per tak uit.
 // Smaller dan 900px: dezelfde gegevens als uitklapbare boom.
 (()=>{
+const EN=document.documentElement.lang==='en';
 const panel=document.getElementById('profielkaart');
 const map=panel&&panel.querySelector('.mindmap');
 if(!map)return;
@@ -104,7 +105,7 @@ function setOpen(open){
   panel.hidden=!open;
   triggers.forEach(t=>t.setAttribute('aria-expanded',String(open)));
   document.querySelectorAll('.founder-visual').forEach(v=>v.classList.toggle('is-open',open));
-  document.querySelectorAll('.fv-skills em').forEach(e=>e.textContent=open?'Sluit −':'Bekijk alles +');
+  document.querySelectorAll('.fv-skills em').forEach(e=>e.textContent=open?(EN?'Close −':'Sluit −'):(EN?'View all +':'Bekijk alles +'));
   if(open){layout();activate(active<0?0:active);panel.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})}
 }
 triggers.forEach(t=>t.addEventListener('click',()=>setOpen(panel.hidden)));

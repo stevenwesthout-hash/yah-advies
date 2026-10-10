@@ -3,6 +3,7 @@
 // Als verzenden mislukt, valt het formulier terug op een mail
 // vanuit het eigen e-mailprogramma van de bezoeker, zodat er nooit een aanvraag verloren gaat.
 (()=>{
+const EN=document.documentElement.lang==='en';
 const TO='info@yah-advies.nl'; // zichtbaar adres voor de terugval-mail
 // Ontvanger formulieren: Gmail van Steven (activatie FormSubmit 8 okt 2026), kopie naar info@.
 // Adres wordt pas in de browser samengesteld om adresverzamelaars te ontmoedigen.
@@ -29,10 +30,10 @@ document.querySelectorAll('form[data-send]').forEach(form=>{
     e.preventDefault();
     if(!form.reportValidity())return;
     if(form.botcheck&&form.botcheck.checked)return; // spam
-    const subject=form.dataset.subject||'Aanvraag via yah-advies.nl';
+    const subject=form.dataset.subject||(EN?'Enquiry via yah-advies.nl':'Aanvraag via yah-advies.nl');
     const extraEl=form.dataset.extra?document.querySelector(form.dataset.extra):null;
     const extra=extraEl?extraEl.value:'';
-    btn.disabled=true;status.textContent='Bezig met versturen…';status.className='form-status';
+    btn.disabled=true;status.textContent=EN?'Sending…':'Bezig met versturen…';status.className='form-status';
     const fd=new FormData(form);
     fd.delete('botcheck');fd.append('_subject',subject);fd.append('_template','table');fd.append('_captcha','false');fd.append('_cc',TO);
     if(form.email&&form.email.value)fd.append('_replyto',form.email.value);
@@ -43,10 +44,10 @@ document.querySelectorAll('form[data-send]').forEach(form=>{
       if(!r.ok||String(j.success)==='false')throw new Error(j.message||r.status);
       form.reset();
       status.className='form-status is-ok';
-      status.textContent='Dank u. Uw bericht is verstuurd. YAH-Advies neemt zo snel mogelijk contact met u op.';
+      status.textContent=EN?'Thank you. Your message has been sent. YAH-Advies will contact you as soon as possible.':'Dank u. Uw bericht is verstuurd. YAH-Advies neemt zo snel mogelijk contact met u op.';
     }catch(err){
       status.className='form-status is-err';
-      status.innerHTML='Verzenden lukte niet. <a href="#">Mail uw bericht dan via uw eigen e-mailprogramma</a> of bel 06 20 69 53 44.';
+      status.innerHTML=EN?'Sending failed. <a href="#">Please email your message from your own email program</a> or call +31 6 20 69 53 44.':'Verzenden lukte niet. <a href="#">Mail uw bericht dan via uw eigen e-mailprogramma</a> of bel 06 20 69 53 44.';
       status.querySelector('a').addEventListener('click',ev=>{ev.preventDefault();mailFallback(form,subject,extra)});
     }finally{btn.disabled=false}
   });

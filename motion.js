@@ -1,6 +1,7 @@
 'use strict';
 // Kleine interactielaag bovenop app.js: menu over het hele scherm, rustige verschijning, werkwijzeroute.
 (()=>{
+const EN=document.documentElement.lang==='en';
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root=document.documentElement;
 const nav=document.getElementById('nav');
@@ -16,7 +17,7 @@ if(nav&&toggle){
     root.classList.toggle('menu-open',open);
     root.style.setProperty('--menu-top',header.getBoundingClientRect().bottom+'px');
     outside.forEach(el=>el.inert=open);
-    if(label)label.textContent=open?'Sluiten':'Menu';
+    if(label)label.textContent=open?(EN?'Close':'Sluiten'):'Menu';
     if(open){const first=nav.querySelector('a');first&&first.focus()}
   }).observe(nav,{attributes:true,attributeFilter:['class']});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus()}});

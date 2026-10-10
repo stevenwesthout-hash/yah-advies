@@ -2,6 +2,7 @@
 // Intro-animatie 'Ontzorgen en waarde creëren': van losse partijen met verwarde lijnen,
 // via één regie (YAH-Advies in het midden), naar een geordend netwerk met resultaat.
 (()=>{
+const EN=document.documentElement.lang==='en';
 const root=document.getElementById('wat-wij-doen');
 if(!root)return;
 const svg=root.querySelector('.intro-svg');
@@ -12,12 +13,12 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const NS='http://www.w3.org/2000/svg';
 const CX=280,CY=212,RAD=158;
 
-const LABELS=['Leveranciers','Locaties','Planning','Budget','Beheer','Gebruikers','Techniek','Risico’s'];
+const LABELS=EN?['Suppliers','Sites','Planning','Budget','Operations','Users','Technology','Risks']:['Leveranciers','Locaties','Planning','Budget','Beheer','Gebruikers','Techniek','Risico’s'];
 // willekeurig ogende, vaste beginposities (zorgen)
 const CHAOS=[[118,96],[432,74],[262,176],[470,262],[96,292],[336,352],[178,392],[458,392]];
 const ORDER=LABELS.map((_,i)=>{const a=(-90+i*45)*Math.PI/180;return[CX+Math.cos(a)*RAD,CY+Math.sin(a)*RAD]});
 const TANGLE=[[0,3],[1,4],[2,7],[5,1],[6,2],[4,5],[0,7],[3,6],[1,2]];
-const CAPTIONS=['Veel partijen, veel zorgen.','Eén regie neemt de zorg over.','Rust, overzicht en een werkend resultaat.'];
+const CAPTIONS=EN?['Many parties, many concerns.','One point of control takes the worry away.','Calm, clarity and a working result.']:['Veel partijen, veel zorgen.','Eén regie neemt de zorg over.','Rust, overzicht en een werkend resultaat.'];
 
 const el=(n,a={},p=svg)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);p.append(e);return e};
 const g={};
@@ -27,7 +28,7 @@ g.spokes=LABELS.map(()=>el('path',{class:'it-spoke'}));
 g.pulses=LABELS.map(()=>el('circle',{class:'it-pulse',r:3.5}));
 g.hub=el('g',{class:'it-hub'});
 el('circle',{cx:CX,cy:CY,r:46,class:'it-hub-bg'},g.hub);
-el('image',{href:'assets/brand/yah-advies-embleem.png',x:CX-30,y:CY-24,width:60,height:47},g.hub);
+el('image',{href:(EN?'../':'')+'assets/brand/yah-advies-embleem.png',x:CX-30,y:CY-24,width:60,height:47},g.hub);
 g.nodes=LABELS.map((lab,i)=>{
   const n=el('g',{class:'it-node'});
   el('circle',{r:10},n);
@@ -79,7 +80,7 @@ function schedule(){
     go((scene+1)%3);schedule();
   },scene===2?6000:4200);
 }
-function syncPlay(){playBtn.textContent=playing?'Pauzeer animatie':'Speel animatie af'}
+function syncPlay(){playBtn.textContent=playing?(EN?'Pause animation':'Pauzeer animatie'):(EN?'Play animation':'Speel animatie af')}
 stepBtns.forEach((b,i)=>b.addEventListener('click',()=>{caption.setAttribute('aria-live','polite');playing=false;syncPlay();clearTimeout(timer);go(i)}));
 playBtn.addEventListener('click',()=>{playing=!playing;cycles=0;syncPlay();if(playing){go((scene+1)%3)}schedule()});
 document.addEventListener('visibilitychange',schedule);

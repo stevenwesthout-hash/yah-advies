@@ -94,7 +94,7 @@ window.YAH_INTAKE_QUESTIONS = [
   },
   {
     "label": "Organisatie en contact",
-    "text": "Voor welke organisatie is dit? U kunt uw naam en zakelijke e-mailadres toevoegen aan uw eigen voorbereiding. Deze proefversie verstuurt niets.",
+    "text": "Voor welke organisatie is dit? Aan het eind vult u uw naam en zakelijke e-mailadres in. Er wordt niets verstuurd voordat u op verzenden klikt.",
     "choices": []
   }
 ];
@@ -147,7 +147,7 @@ window.YAH_RECRUITMENT_QUESTIONS = [
   },
   {
     "label": "Organisatie en contact",
-    "text": "Wie is de contactpersoon? U kunt zakelijke contactgegevens toevoegen aan uw eigen voorbereiding. Deze proefversie verstuurt niets.",
+    "text": "Wie is de contactpersoon? Aan het eind vult u de zakelijke contactgegevens in. Er wordt niets verstuurd voordat u op verzenden klikt.",
     "choices": []
   }
 ];
