@@ -396,6 +396,8 @@ a.fv-photo:hover .fv-hint,a.fv-photo:focus-visible .fv-hint{opacity:1;transform:
 .cv-list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
 .cv-list strong{font-weight:600}
 .cv-list span{color:var(--muted);font-size:.9rem}
+.cv-core{max-width:900px;line-height:1.8;color:var(--ink-2);margin:0 0 8px}
+.cv-note{color:var(--muted);font-size:.9rem;margin-top:12px}
 @media(max-width:760px){.cv-timeline>li{grid-template-columns:1fr;gap:6px}.cv-columns{grid-template-columns:1fr;gap:0}}
 .mindmap.has-active .mm-branch:not(.is-active){opacity:.45}
 
